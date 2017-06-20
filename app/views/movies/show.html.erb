@@ -1,2 +1,22 @@
 <h2><%= @movie.title %></h2>
 <p><%= @movie.description %></p>
+<%= link_to("发表评论", new_movie_review_path(@movie), class: "btn btn-primary pull-right") %>
+<%= link_to("收藏电影") %>
+<table class="table">
+  <thead>
+    <tr>
+      <td>评论内容</td>
+      <td>发表者</td>
+      <td>发表时间</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.content %></td>
+        <td><%= review.user.email %></td>
+        <td><%= review.created_at%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

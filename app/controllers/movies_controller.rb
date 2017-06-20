@@ -10,6 +10,7 @@ before_action :authenticate_user!, :only => [:new, :create, :edit, :destroy, :up
 
   def show
     @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews
   end
 
   def edit
