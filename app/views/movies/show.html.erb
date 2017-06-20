@@ -1,7 +1,14 @@
 <h2><%= @movie.title %></h2>
 <p><%= @movie.description %></p>
 <%= link_to("发表评论", new_movie_review_path(@movie), class: "btn btn-primary pull-right") %>
-<%= link_to("收藏电影") %>
+<div class="pull-right">
+<% if current_user && current_user.is_favorite?(@movie) %>
+  <label>已收藏</label>
+<% else %>
+  <label>未收藏</label>
+<% end %>
+</div>
+
 <table class="table">
   <thead>
     <tr>
