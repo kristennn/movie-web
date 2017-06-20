@@ -42,6 +42,28 @@ before_action :authenticate_user!, :only => [:new, :create, :edit, :destroy, :up
     redirect_to movies_path
   end
 
+  def join
+    @movie = Movie.find(params[:id])
+    if current_user.is_favorite?(@movie)
+      你
+    else
+      current_user.join!(@movie)
+    end
+    redirect_to movie_path(@movie)
+  end
+
+  def quit
+    @movie = Movie.find(params[:id])
+    if current_user.is_favorite?(@movie)
+      current_user.quit!(@movie)
+    else
+      不
+    end
+    redirect_to movie_path(@movie)
+  end
+
+  private
+
   def movie_params
     params.require(:movie).permit(:title, :description)
   end
